@@ -1,8 +1,8 @@
-import React from 'react';
+import BaseComponent from '../BaseComponent';
 import axios from 'axios';
 
 var sID,stask;
-export default class TodoListPage extends React.Component {
+export default class TodoListPage extends BaseComponent {
     constructor(props) {
       super(props);
       this.state = {
@@ -45,7 +45,7 @@ export default class TodoListPage extends React.Component {
         axios.delete(`http://localhost:4001/tasks/${id}`)
         .then(() => {
           const updatedIndex = this.state.tasks.findIndex(task => task.id === id);
-          // get index of updated entry on arra
+          // get index of updated entry on array
           this.state.tasks[updatedIndex].deletedAt = new Date().toISOString();
           this.setState({
             tasks: [
